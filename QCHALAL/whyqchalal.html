@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QC Halal – Halal Compliance Bridge India & Indonesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:#1a5c38;--green-dark:#0f3d25;--green-light:#2a7a4b;
+      --gold:#c9972b;--gold-light:#e8b84b;
+      --red:#CE1126;--red-dark:#a50d1e;--red-light:#e8192e;
+      --white:#ffffff;--cream:#f9f6f0;--text:#1a1a1a;--muted:#5a5a5a;
+      --border:rgba(201,151,43,0.25);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+    [data-en],[data-id]{display:none}
+    [data-lang="en"] [data-en]{display:inline}
+    [data-lang="id"] [data-id]{display:inline}
+    [data-lang="en"] [data-en].block{display:block}
+    [data-lang="id"] [data-id].block{display:block}
+    .top-bar{background:var(--green-dark);color:rgba(255,255,255,0.8);font-size:0.72rem;letter-spacing:0.05em;text-align:center;padding:7px 16px}
+    .top-bar strong{color:var(--gold-light)}
+    header{position:sticky;top:0;z-index:1000;background:var(--white);border-bottom:1.5px solid var(--border);box-shadow:0 2px 24px rgba(26,92,56,0.08);transition:box-shadow 0.3s}
+    .nav-inner{max-width:1180px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+    .logo-flags{display:flex;align-items:center;gap:4px;font-size:1.35rem;line-height:1}
+    .logo-bridge{font-size:0.85rem;color:var(--gold);font-weight:700;margin:0 1px}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-name{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:var(--green);letter-spacing:-0.01em}
+    .logo-name span{color:var(--gold)}
+    .logo-sub{font-size:0.62rem;font-weight:500;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase}
+    nav{display:flex;align-items:center;gap:4px}
+    nav a{text-decoration:none;font-size:0.86rem;font-weight:500;color:var(--text);padding:8px 13px;border-radius:6px;transition:color 0.2s,background 0.2s;white-space:nowrap}
+    nav a:hover{color:var(--green);background:rgba(26,92,56,0.07)}
+    .nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    .lang-toggle{display:flex;background:rgba(26,92,56,0.08);border-radius:20px;padding:3px;gap:2px}
+    .lang-btn{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;color:var(--muted);padding:4px 10px;border-radius:16px;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em}
+    .lang-btn.active{background:var(--green);color:white;box-shadow:0 1px 6px rgba(26,92,56,0.3)}
+    .wa-btn{display:flex;align-items:center;gap:7px;background:var(--green);color:white!important;text-decoration:none;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:8px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 2px 12px rgba(26,92,56,0.25);white-space:nowrap}
+    .wa-btn:hover{background:var(--green-light);transform:translateY(-1px);box-shadow:0 4px 18px rgba(26,92,56,0.35)}
+    .wa-icon{width:18px;height:18px;fill:white;flex-shrink:0}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent;border-radius:6px}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--green);border-radius:2px;transition:all 0.3s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .gold-line{height:3px;background:linear-gradient(90deg,var(--green-dark),var(--gold),var(--green-dark))}
+    .mobile-menu{display:none;flex-direction:column;background:var(--white);border-top:1px solid var(--border);padding:12px 24px 20px;gap:2px;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{text-decoration:none;font-size:0.95rem;font-weight:500;color:var(--text);padding:12px 10px;border-bottom:1px solid rgba(0,0,0,0.05);transition:color 0.2s}
+    .mobile-menu a:hover{color:var(--green)}
+    .mobile-menu-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:14px;margin-top:6px;gap:12px}
+    .mobile-wa-btn{display:flex;align-items:center;gap:8px;background:var(--green);color:white;text-decoration:none;font-size:0.88rem;font-weight:600;padding:10px 18px;border-radius:8px;flex:1;justify-content:center}
+    .hero{position:relative;background:var(--red);overflow:hidden;padding:80px 24px 70px}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:var(--white);z-index:0}
+    .hero-bg-circle{position:absolute;border-radius:50%;opacity:0.07;background:white;z-index:1}
+    .hero-bg-circle.c1{width:500px;height:500px;top:-180px;right:-120px}
+    .hero-bg-circle.c2{width:300px;height:300px;bottom:60px;left:-80px}
+    .hero-bg-circle.c3{width:150px;height:150px;top:40px;left:30%;opacity:0.05}
+    .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .hero-left{color:white}
+    .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);color:white;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:22px;backdrop-filter:blur(4px)}
+    .hero-badge .dot{width:7px;height:7px;background:var(--gold-light);border-radius:50%;animation:pulse 1.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+    .hero-headline{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.8rem);font-weight:900;line-height:1.2;color:white;margin-bottom:20px}
+    .hero-headline .highlight{color:var(--gold-light);font-style:italic}
+    .hero-subheadline{font-size:clamp(0.9rem,1.5vw,1.05rem);font-weight:400;color:rgba(255,255,255,0.88);line-height:1.7;margin-bottom:32px;max-width:480px}
+    .hero-subheadline strong{color:white;font-weight:700}
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--red)!important;text-decoration:none;font-size:0.92rem;font-weight:700;padding:13px 24px;border-radius:8px;transition:all 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.2)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:white!important;text-decoration:none;font-size:0.92rem;font-weight:600;padding:13px 24px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);transition:all 0.2s}
+    .btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:white}
+    .hero-trust{display:flex;gap:20px;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:7px;font-size:0.78rem;color:rgba(255,255,255,0.8);font-weight:500}
+    .trust-item .tick{width:18px;height:18px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0}
+    .hero-right{display:flex;flex-direction:column;gap:20px}
+    .countdown-card{background:white;border-radius:16px;padding:32px 28px;box-shadow:0 8px 40px rgba(206,17,38,0.18),0 2px 12px rgba(0,0,0,0.08);border-top:4px solid var(--red);text-align:center}
+    .countdown-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+    .countdown-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:24px;line-height:1.3}
+    .countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+    .countdown-unit{background:var(--red);border-radius:10px;padding:14px 6px 10px;color:white}
+    .countdown-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;display:block}
+    .countdown-unit-label{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);display:block;margin-top:4px}
+    .countdown-cta{display:block;background:var(--red);color:white!important;text-decoration:none;font-size:0.88rem;font-weight:700;padding:12px 20px;border-radius:8px;transition:background 0.2s,transform 0.15s;letter-spacing:0.02em}
+    .countdown-cta:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .flags-card{background:white;border-radius:16px;padding:20px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.07);display:flex;align-items:center;justify-content:center;gap:12px}
+    .flag-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+    .flag-item .flag-emoji{font-size:2.2rem}
+    .flag-item .flag-name{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+    .flag-connector{display:flex;flex-direction:column;align-items:center;gap:4px}
+    .flag-connector .arrow{font-size:1.4rem;color:var(--gold);font-weight:700}
+    .flag-connector .connector-text{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green)}
+    .wa-float{position:fixed;bottom:24px;right:24px;z-index:999;background:#25D366;color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;animation:wa-bounce 2s ease-in-out 2s 3}
+    .wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+    .wa-float svg{width:30px;height:30px;fill:white}
+    @keyframes wa-bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    @media(max-width:900px){
+      .why-grid{grid-template-columns:1fr 1fr!important}
+      nav{display:none}.wa-btn{display:none}.hamburger{display:flex}
+      .hero-inner{grid-template-columns:1fr;gap:40px}
+      .hero{padding:56px 20px 56px}.hero::after{height:0}
+    }
+    @media(max-width:480px){
+      .why-grid{grid-template-columns:1fr!important}
+      .nav-inner{height:62px;padding:0 16px}
+      .logo-name{font-size:1.25rem}.logo-flags{font-size:1.15rem}
+      .top-bar{font-size:0.65rem}.hero-headline{font-size:1.6rem}
+      .countdown-grid{gap:6px}.countdown-num{font-size:1.6rem}
+      .hero-cta{flex-direction:column}.btn-primary,.btn-secondary{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <strong data-en>⚠ BPJPH Mandatory Enforcement:</strong>
+    <strong data-id>⚠ Penegakan Wajib BPJPH:</strong>
+    &nbsp;
+    <span data-en>Indonesia's halal compliance law is now in full force. All imported products must comply.</span>
+    <span data-id>Hukum kepatuhan halal Indonesia kini berlaku penuh. Semua produk impor wajib patuh.</span>
+  </div>
+
+  <header id="mainHeader">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-flags">🇮🇳<span class="logo-bridge">⟷</span>🇮🇩</div>
+        <div class="logo-text">
+          <span class="logo-name">QC <span>Halal</span></span>
+          <span class="logo-sub"><span data-en>Halal Compliance Bridge</span><span data-id>Jembatan Kepatuhan Halal</span></span>
+        </div>
+      </a>
+      <nav>
+        <a href="#why"><span data-en>Why QC Halal</span><span data-id>Mengapa QC Halal</span></a>
+        <a href="#services-india"><span data-en>Services — India</span><span data-id>Layanan — India</span></a>
+        <a href="#services-indonesia"><span data-en>Services — Indonesia</span><span data-id>Layanan — Indonesia</span></a>
+        <a href="#process"><span data-en>How It Works</span><span data-id>Cara Kerja</span></a>
+        <a href="#contact"><span data-en>Contact</span><span data-id>Kontak</span></a>
+      </nav>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+          <button class="lang-btn" onclick="setLang('id')" id="btn-id">ID</button>
+        </div>
+        <a href="https://wa.me/6287792111981" target="_blank" class="wa-btn">
+          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-en>WhatsApp Us</span><span data-id>Hubungi Kami</span>
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+    <div class="gold-line"></div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#why" onclick="closeMenu()"><span data-en>Why QC Halal</span><span data-id>Mengapa QC Halal</span></a>
+    <a href="#services-india" onclick="closeMenu()"><span data-en>Services — India</span><span data-id>Layanan — India</span></a>
+    <a href="#services-indonesia" onclick="closeMenu()"><span data-en>Services — Indonesia</span><span data-id>Layanan — Indonesia</span></a>
+    <a href="#process" onclick="closeMenu()"><span data-en>How It Works</span><span data-id>Cara Kerja</span></a>
+    <a href="#contact" onclick="closeMenu()"><span data-en>Contact</span><span data-id>Kontak</span></a>
+    <div class="mobile-menu-bottom">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')" id="btn-en-m">EN</button>
+        <button class="lang-btn" onclick="setLang('id')" id="btn-id-m">ID</button>
+      </div>
+      <a href="https://wa.me/6287792111981" target="_blank" class="mobile-wa-btn">
+        <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-en>WhatsApp Us</span><span data-id>Hubungi Kami</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="hero" id="home">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-bg-circle c3"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge"><span class="dot"></span><span data-en>BPJPH Mandatory Enforcement Active</span><span data-id>Penegakan Wajib BPJPH Berlaku</span></div>
+        <h1 class="hero-headline">
+          <span data-en class="block">Selling to Indonesia?<br><span class="highlight">Halal Certification</span><br>is Now Mandatory<br>by Indonesian Law</span>
+          <span data-id class="block">Berjualan ke Indonesia?<br><span class="highlight">Sertifikasi Halal</span><br>Kini Wajib<br>Berdasarkan Hukum Indonesia</span>
+        </h1>
+        <p class="hero-subheadline">
+          <span data-en>QC Halal delivers <strong>lifetime halal compliance assurance</strong> for manufacturers — one trusted partner, zero hassle, forever. We bridge Indian exporters and Indonesian importers through complete BPJPH-recognized halal compliance.</span>
+          <span data-id>QC Halal memberikan <strong>jaminan kepatuhan halal seumur hidup</strong> bagi produsen — satu mitra terpercaya, tanpa kerumitan, selamanya.</span>
+        </p>
+        <div class="hero-cta">
+          <a href="https://wa.me/6287792111981" target="_blank" class="btn-primary">
+            <svg style="width:18px;height:18px;fill:#CE1126;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-en>WhatsApp Us Now</span><span data-id>Hubungi Kami Sekarang</span>
+          </a>
+          <a href="#services-india" class="btn-secondary"><span data-en>Explore Services →</span><span data-id>Lihat Layanan →</span></a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="tick">✓</span><span data-en>BPJPH Recognized</span><span data-id>Diakui BPJPH</span></div>
+          <div class="trust-item"><span class="tick">✓</span><span data-en>India–Indonesia Specialists</span><span data-id>Spesialis India–Indonesia</span></div>
+          <div class="trust-item"><span class="tick">✓</span><span data-en>Lifetime Support</span><span data-id>Dukungan Seumur Hidup</span></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="countdown-card">
+          <div class="countdown-label"><span data-en>⏳ Enforcement Deadline Countdown</span><span data-id>⏳ Hitung Mundur Batas Penegakan</span></div>
+          <div class="countdown-title"><span data-en>October 17, 2026 — BPJPH Full Enforcement</span><span data-id>17 Oktober 2026 — Penegakan Penuh BPJPH</span></div>
+          <div class="countdown-grid">
+            <div class="countdown-unit"><span class="countdown-num" id="cd-days">--</span><span class="countdown-unit-label" data-en>Days</span><span class="countdown-unit-label" data-id>Hari</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-unit-label" data-en>Hours</span><span class="countdown-unit-label" data-id>Jam</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-unit-label" data-en>Minutes</span><span class="countdown-unit-label" data-id>Menit</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-unit-label" data-en>Seconds</span><span class="countdown-unit-label" data-id>Detik</span></div>
+          </div>
+          <a href="https://wa.me/6287792111981" target="_blank" class="countdown-cta"><span data-en>Don't Wait — Get Compliant Now</span><span data-id>Jangan Tunda — Patuh Sekarang</span></a>
+        </div>
+        <div class="flags-card">
+          <div class="flag-item"><span class="flag-emoji">🇮🇳</span><span class="flag-name"><span data-en>India</span><span data-id>India</span></span></div>
+          <div class="flag-connector"><span class="arrow">⟷</span><span class="connector-text">QC Halal</span></div>
+          <div class="flag-item"><span class="flag-emoji">🇮🇩</span><span class="flag-name"><span data-en>Indonesia</span><span data-id>Indonesia</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" style="padding:90px 24px;background:#f9f6f0;">
+    <div style="max-width:1180px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:56px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,92,56,0.08);border:1px solid rgba(26,92,56,0.25);color:#1a5c38;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:20px;">
+          <span data-en>Why Choose QC Halal</span><span data-id>Mengapa Memilih QC Halal</span>
+        </div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#1a1a1a;line-height:1.2;margin-bottom:16px;">
+          <span data-en class="block">Beyond One Time —<br><span style="color:#1a5c38;">Certified Forever.</span></span>
+          <span data-id class="block">Lebih dari Sekali —<br><span style="color:#1a5c38;">Tersertifikasi Selamanya.</span></span>
+        </h2>
+        <p style="font-size:1.05rem;color:#5a5a5a;max-width:600px;margin:0 auto;line-height:1.7;">
+          <span data-en>Halal certification is not a one-time checkbox. Every batch, every consignment, every shipment needs to be compliant. QC Halal is your permanent compliance partner — not just a service provider.</span>
+          <span data-id>Sertifikasi halal bukan sekadar centang sekali. Setiap batch, setiap konsinyasi, setiap pengiriman harus patuh. QC Halal adalah mitra kepatuhan permanen Anda.</span>
+        </p>
+      </div>
+      <div class="why-grid" style="margin-bottom:60px;">
+        <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(26,92,56,0.12);border-top:4px solid #1a5c38;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(26,92,56,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;background:rgba(26,92,56,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">♾️</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:10px;"><span data-en>Beyond One Time — Certified Forever</span><span data-id>Lebih dari Sekali — Tersertifikasi Selamanya</span></h3>
+          <p style="font-size:0.85rem;color:#5a5a5a;line-height:1.7;"><span data-en>Halal compliance is an ongoing commitment. Every production batch requires fresh certification. We stay with you permanently — so your supply chain never faces a compliance gap.</span><span data-id>Kepatuhan halal adalah komitmen berkelanjutan. Setiap batch produksi memerlukan sertifikasi baru. Kami menemani Anda secara permanen.</span></p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(26,92,56,0.12);border-top:4px solid #c9972b;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(26,92,56,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;background:rgba(201,151,43,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">🏭</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:10px;"><span data-en>We Come To Your Factory</span><span data-id>Kami Datang ke Pabrik Anda</span></h3>
+          <p style="font-size:0.85rem;color:#5a5a5a;line-height:1.7;"><span data-en>Our QC team visits your production facility directly — factory, farm or processing unit. On-site inspection, real documentation, zero shortcuts. Your compliance verified at the source.</span><span data-id>Tim QC kami mengunjungi fasilitas produksi Anda secara langsung. Inspeksi di tempat, dokumentasi nyata, tanpa jalan pintas.</span></p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(26,92,56,0.12);border-top:4px solid #1a5c38;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(26,92,56,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;background:rgba(26,92,56,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">🌏</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:10px;"><span data-en>One Partner — Both Countries</span><span data-id>Satu Mitra — Dua Negara</span></h3>
+          <p style="font-size:0.85rem;color:#5a5a5a;line-height:1.7;"><span data-en>From your production floor in India to the Indonesian importer's door — QC Halal manages everything across both countries. No middlemen. No confusion. One trusted contact.</span><span data-id>Dari lantai produksi Anda di India hingga pintu importir Indonesia — QC Halal mengelola segalanya. Tanpa perantara.</span></p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(26,92,56,0.12);border-top:4px solid #c9972b;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(26,92,56,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;background:rgba(201,151,43,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">📋</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:10px;"><span data-en>Zero Hassle — We Handle Everything</span><span data-id>Tanpa Kerumitan — Kami Tangani Segalanya</span></h3>
+          <p style="font-size:0.85rem;color:#5a5a5a;line-height:1.7;"><span data-en>BPJPH requirements, SIHALAL registration, documentation, labeling compliance — we manage it all. You focus on production. We handle every paper and process.</span><span data-id>Persyaratan BPJPH, pendaftaran SIHALAL, dokumentasi, pelabelan — kami tangani semuanya. Anda fokus pada produksi.</span></p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(26,92,56,0.12);border-top:4px solid #1a5c38;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(26,92,56,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;background:rgba(26,92,56,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">📦</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:10px;"><span data-en>Every Batch. Every Consignment. Covered.</span><span data-id>Setiap Batch. Setiap Konsinyasi. Terlindungi.</span></h3>
+          <p style="font-size:0.85rem;color:#5a5a5a;line-height:1.7;"><span data-en>Each shipment to Indonesia needs valid halal documentation. We ensure every consignment carries proper BPJPH-recognized certification — no rejected shipments, no customs delays.</span><span data-id>Setiap pengiriman ke Indonesia membutuhkan dokumentasi halal yang valid. Tidak ada penolakan, tidak ada keterlambatan bea cukai.</span></p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(26,92,56,0.12);border-top:4px solid #c9972b;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(26,92,56,0.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;background:rgba(201,151,43,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;">🔒</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:10px;"><span data-en>Your Indonesian Market — Always Protected</span><span data-id>Pasar Indonesia Anda — Selalu Terlindungi</span></h3>
+          <p style="font-size:0.85rem;color:#5a5a5a;line-height:1.7;"><span data-en>Indonesia is a 270 million consumer market. Non-compliance means losing access permanently. QC Halal ensures your market access is never at risk — today, tomorrow and forever.</span><span data-id>Indonesia adalah pasar 270 juta konsumen. Ketidakpatuhan berarti kehilangan akses selamanya. QC Halal memastikan akses pasar Anda tidak pernah berisiko.</span></p>
+        </div>
+      </div>
+      <div style="background:#1a5c38;border-radius:20px;padding:52px 40px;text-align:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-50px;right:-50px;width:220px;height:220px;background:rgba(249,246,240,0.05);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-70px;left:-40px;width:260px;height:260px;background:rgba(249,246,240,0.04);border-radius:50%;"></div>
+        <div style="position:relative;z-index:1;">
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#e8b84b;margin-bottom:12px;"><span data-en>Your Compliance. Our Responsibility.</span><span data-id>Kepatuhan Anda. Tanggung Jawab Kami.</span></div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:#f9f6f0;margin-bottom:16px;line-height:1.3;"><span data-en>Ready to Certify Beyond One Time?</span><span data-id>Siap Tersertifikasi Lebih dari Sekali?</span></h3>
+          <p style="color:rgba(249,246,240,0.8);font-size:0.95rem;max-width:480px;margin:0 auto 28px;line-height:1.6;"><span data-en>Join Indian exporters who never worry about halal compliance again. Let QC Halal be your permanent certification partner.</span><span data-id>Bergabunglah dengan eksportir India yang tidak pernah khawatir tentang kepatuhan halal lagi.</span></p>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://wa.me/6287792111981" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#f9f6f0;color:#1a5c38;text-decoration:none;font-size:0.92rem;font-weight:700;padding:13px 28px;border-radius:8px;">💬 <span data-en>WhatsApp Us Now</span><span data-id>Hubungi Kami Sekarang</span></a>
+            <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:#f9f6f0;text-decoration:none;font-size:0.92rem;font-weight:600;padding:13px 28px;border-radius:8px;border:2px solid rgba(249,246,240,0.4);"><span data-en>Send Enquiry →</span><span data-id>Kirim Pertanyaan →</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a href="https://wa.me/6287792111981" target="_blank" class="wa-float">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    function setLang(lang){
+      document.documentElement.setAttribute('data-lang',lang);
+      ['btn-en','btn-id','btn-en-m','btn-id-m'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el)el.classList.toggle('active',el.id.includes(lang));
+      });
+    }
+    function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+    function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+    window.addEventListener('scroll',()=>{document.getElementById('mainHeader').style.boxShadow=window.scrollY>10?'0 4px 32px rgba(26,92,56,0.13)':'0 2px 24px rgba(26,92,56,0.08)';});
+    function updateCountdown(){
+      const diff=new Date('2026-10-17T00:00:00+07:00')-new Date();
+      if(diff<=0){['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id=>document.getElementById(id).textContent='00');return;}
+      document.getElementById('cd-days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+      document.getElementById('cd-hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+      document.getElementById('cd-mins').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+      document.getElementById('cd-secs').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    }
+    updateCountdown();setInterval(updateCountdown,1000);
+  </script>
+</body>
+</html>
